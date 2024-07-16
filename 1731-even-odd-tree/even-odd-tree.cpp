@@ -26,7 +26,6 @@ public:
                 TreeNode* node = q.front();
                 q.pop();
 
-                // Check value conditions based on level parity
                 if ((level % 2 == 0 && (i > 0 && node->val <= curr.back() || node->val % 2 == 0))
                     || (level % 2 == 1 && (i > 0 && node->val >= curr.back() || node->val % 2 == 1))) {
                     return false;
