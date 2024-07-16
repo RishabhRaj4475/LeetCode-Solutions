@@ -11,28 +11,35 @@
  */
 class Solution {
 public:
-    string result = "";
-    void solve(TreeNode* root , string curr){
-        if(root == NULL) return;
+    string smallestFromLeaf(TreeNode* root) {
+        if (!root) return "";
 
-        curr += char(root->val + 'a');
-        
-        if (root->left == NULL && root->right == NULL) {
-            reverse(curr.begin(), curr.end());
-            if (result == "" || curr < result) {
-                result = curr;
+        using NodePathPair = pair<TreeNode*, string>;
+        queue<NodePathPair> q;
+        q.push({root, string(1, char(root->val + 'a'))});  // Initialize with the node's character
+
+        string result = "~";  // Initializing with a character greater than any lowercase letter
+
+        while (!q.empty()) {
+            auto [node, path] = q.front();
+            q.pop();
+
+            if (!node->left && !node->right) {
+                // Compare path directly with result
+                if (path < result) {
+                    result = path;
+                }
             }
-            reverse(curr.begin(), curr.end());
-            return;
+
+            if (node->left) {
+                q.push({node->left, char(node->left->val + 'a') + path});
+            }
+            if (node->right) {
+                q.push({node->right, char(node->right->val + 'a') + path});
+            }
         }
 
-        solve(root->left, curr);
-        solve(root->right, curr);
-        
-    }
-    string smallestFromLeaf(TreeNode* root) {
-        string curr = "";
-        solve(root , curr);
         return result;
+        
     }
 };
