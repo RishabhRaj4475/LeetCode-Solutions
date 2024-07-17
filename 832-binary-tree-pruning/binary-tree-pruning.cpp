@@ -26,8 +26,8 @@ public:
 
         if( root == NULL) return nullptr;
 
-        root->left = isOnePresent(root->left);
-        root->right = isOnePresent(root->right);
+        root->left = pruneTree(root->left);
+        root->right = pruneTree(root->right);
 
         if(root->left == NULL and root->right == NULL and root->val == 0) return NULL;
 
