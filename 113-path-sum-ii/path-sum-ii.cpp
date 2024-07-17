@@ -27,7 +27,6 @@ public:
             path.pop_back();
         }
 
-        
         if(root->right != NULL){
             path.push_back(root->right->val);
             solve(path , root->right , target , curr + root->right->val);
