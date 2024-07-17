@@ -34,7 +34,7 @@ int value;
             newRoot->left = root;
             return newRoot;
         }
-        solve(root , depth , 1);
+        solve(root , depth - 1 , 0);
         return root;
     }
 };
