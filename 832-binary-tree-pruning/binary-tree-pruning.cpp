@@ -12,16 +12,6 @@
 class Solution {
 public:
 
-    TreeNode* isOnePresent(TreeNode* root){
-        if( root == NULL) return NULL;
-
-        root->left = isOnePresent(root->left);
-        root->right = isOnePresent(root->right);
-
-        if(root->right == NULL and root->left == NULL and root->val != 1) return NULL;
-
-        return root;
-    }
     TreeNode* pruneTree(TreeNode* root) {
 
         if( root == NULL) return nullptr;
